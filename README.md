@@ -1,5 +1,5 @@
 # postgis-geojson
-[![Build Status](https://travis-ci.org/mayconbordin/postgis-geojson.svg?branch=master)](https://travis-ci.org/mayconbordin/postgis-geojson) [![Release](https://img.shields.io/github/release/mayconbordin/postgis-geojson.svg?label=JitPack)](https://jitpack.io/#mayconbordin/postgis-geojson)
+[![Build Status](https://travis-ci.org/mayconbordin/postgis-geojson.svg?branch=master)](https://travis-ci.org/mayconbordin/postgis-geojson) [![Release](https://jitpack.io/v/fcv/postgis-geojson.svg)](https://jitpack.io/#fcv/postgis-geojson)
 
 GeoJSON Jackson Serializers and Deserializers for PostGIS Geometry objects.
 
@@ -12,13 +12,13 @@ The relation between GeoJSON geometry objects and PostGIS objects is given below
 
 GeoJSON           | PostGIS
 ------------------| -------------
-[Point](http://geojson.org/geojson-spec.html#point)| [Point](http://postgis.refractions.net/documentation/javadoc/org/postgis/Point.html)
-[MultiPoint](http://geojson.org/geojson-spec.html#multipoint)| [MultiPoint](http://postgis.refractions.net/documentation/javadoc/org/postgis/MultiPoint.html)
-[LineString](http://geojson.org/geojson-spec.html#linestring)| [LineString](http://postgis.refractions.net/documentation/javadoc/org/postgis/LineString.html)
-[MultiLineString](http://geojson.org/geojson-spec.html#multilinestring)| [MultiLineString](http://postgis.refractions.net/documentation/javadoc/org/postgis/MultiLineString.html)
-[Polygon](http://geojson.org/geojson-spec.html#polygon)| [Polygon](http://postgis.refractions.net/documentation/javadoc/org/postgis/Polygon.html)
-[MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon)| [MultiPolygon](http://postgis.refractions.net/documentation/javadoc/org/postgis/MultiPolygon.html)
-[GeometryCollection](http://geojson.org/geojson-spec.html#geometry-collection)| [GeometryCollection](http://postgis.refractions.net/documentation/javadoc/org/postgis/GeometryCollection.html)
+[Point](http://geojson.org/geojson-spec.html#point)| [Point](https://javadoc.io/doc/net.postgis/postgis-geometry/2021.1.0/net/postgis/jdbc/geometry/Point.html)
+[MultiPoint](http://geojson.org/geojson-spec.html#multipoint)| [MultiPoint](https://javadoc.io/doc/net.postgis/postgis-geometry/2021.1.0/net/postgis/jdbc/geometry/MultiPoint.html)
+[LineString](http://geojson.org/geojson-spec.html#linestring)| [LineString](https://javadoc.io/doc/net.postgis/postgis-geometry/2021.1.0/net/postgis/jdbc/geometry/LineString.html)
+[MultiLineString](http://geojson.org/geojson-spec.html#multilinestring)| [MultiLineString](https://javadoc.io/doc/net.postgis/postgis-geometry/2021.1.0/net/postgis/jdbc/geometry/MultiLineString.html)
+[Polygon](http://geojson.org/geojson-spec.html#polygon)| [Polygon](https://javadoc.io/doc/net.postgis/postgis-geometry/2021.1.0/net/postgis/jdbc/geometry/Polygon.html)
+[MultiPolygon](http://geojson.org/geojson-spec.html#multipolygon)| [MultiPolygon](https://javadoc.io/doc/net.postgis/postgis-geometry/2021.1.0/net/postgis/jdbc/geometry/MultiPolygon.html)
+[GeometryCollection](http://geojson.org/geojson-spec.html#geometry-collection)| [GeometryCollection](https://javadoc.io/doc/net.postgis/postgis-geometry/2021.1.0/net/postgis/jdbc/geometry/GeometryCollection.html)
 
 ## Installation
 
@@ -35,9 +35,9 @@ Then add the dependency to your `pom.xml` file:
 
 ```xml
 <dependency>
-  <groupId>com.github.mayconbordin</groupId>
+  <groupId>com.github.fcv</groupId>
   <artifactId>postgis-geojson</artifactId>
-  <version>1.0</version>
+  <version>2.0</version>
 </dependency>
 ```
 
