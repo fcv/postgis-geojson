@@ -1,4 +1,4 @@
-package org.postgis.geojson.deserializers;
+package net.postgis.geojson.deserializers;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
@@ -6,21 +6,22 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
+import net.postgis.geojson.GeometryTypes;
+import net.postgis.jdbc.geometry.Geometry;
+import net.postgis.jdbc.geometry.GeometryCollection;
+import net.postgis.jdbc.geometry.LineString;
+import net.postgis.jdbc.geometry.LinearRing;
+import net.postgis.jdbc.geometry.MultiLineString;
+import net.postgis.jdbc.geometry.MultiPoint;
+import net.postgis.jdbc.geometry.MultiPolygon;
+import net.postgis.jdbc.geometry.Point;
+import net.postgis.jdbc.geometry.Polygon;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import org.postgis.Geometry;
-import org.postgis.GeometryCollection;
-import org.postgis.LineString;
-import org.postgis.LinearRing;
-import org.postgis.MultiLineString;
-import org.postgis.MultiPoint;
-import org.postgis.MultiPolygon;
-import org.postgis.Point;
-import org.postgis.Polygon;
-import static org.postgis.geojson.GeometryTypes.*;
 
 /**
  * Deserializer for Geometry types.
@@ -59,17 +60,17 @@ public class GeometryDeserializer extends JsonDeserializer<Geometry> {
     protected Geometry coordinatesToGeometry(String type, JsonNode coordinates, JsonParser jp)
             throws JsonParseException {
         switch (type) {
-            case POINT:
+            case GeometryTypes.POINT:
                 return readNodeAsPoint(coordinates);
-            case LINE_STRING:
+            case GeometryTypes.LINE_STRING:
                 return readNodeAsLineString(coordinates);
-            case POLYGON:
+            case GeometryTypes.POLYGON:
                 return new Polygon(readNodeAsLinearRingArray(coordinates));
-            case MULTI_POINT:
+            case GeometryTypes.MULTI_POINT:
                 return new MultiPoint(readNodeAsPointArray(coordinates));
-            case MULTI_LINE_STRING:
+            case GeometryTypes.MULTI_LINE_STRING:
                 return new MultiLineString(readNodeAsLineStringArray(coordinates));
-            case MULTI_POLYGON:
+            case GeometryTypes.MULTI_POLYGON:
                 return new MultiPolygon(readNodeAsPolygonArray(coordinates));
             default:
                 throw new JsonParseException("\""+type+"\" is not a valid Geometry type.",

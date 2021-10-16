@@ -1,21 +1,20 @@
-package org.postgis.geojson.serializers;
-
-import java.io.IOException;
-
-import org.postgis.Geometry;
-import org.postgis.Point;
+package net.postgis.geojson.serializers;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import org.postgis.GeometryCollection;
-import org.postgis.LineString;
-import org.postgis.MultiLineString;
-import org.postgis.MultiPoint;
-import org.postgis.MultiPolygon;
-import org.postgis.Polygon;
-import static org.postgis.geojson.GeometryTypes.*;
+import net.postgis.geojson.GeometryTypes;
+import net.postgis.jdbc.geometry.Geometry;
+import net.postgis.jdbc.geometry.GeometryCollection;
+import net.postgis.jdbc.geometry.LineString;
+import net.postgis.jdbc.geometry.MultiLineString;
+import net.postgis.jdbc.geometry.MultiPoint;
+import net.postgis.jdbc.geometry.MultiPolygon;
+import net.postgis.jdbc.geometry.Point;
+import net.postgis.jdbc.geometry.Polygon;
+
+import java.io.IOException;
 
 /**
  * Serializer for Geometry types.
@@ -49,7 +48,7 @@ public class GeometrySerializer extends JsonSerializer<Geometry> {
     }
     
     protected void serializeGeometryCollection(GeometryCollection gc, JsonGenerator json) throws IOException {
-        writeTypeField(GEOMETRY_COLLECTION, json);
+        writeTypeField(GeometryTypes.GEOMETRY_COLLECTION, json);
         json.writeArrayFieldStart("geometries");
         
         for (Geometry geom : gc.getGeometries()) {
@@ -60,7 +59,7 @@ public class GeometrySerializer extends JsonSerializer<Geometry> {
     }
     
     protected void serializeMultiLineString(MultiLineString mls, JsonGenerator json) throws IOException {
-        writeTypeField(MULTI_LINE_STRING, json);
+        writeTypeField(GeometryTypes.MULTI_LINE_STRING, json);
         writeStartCoordinates(json);
 
         for (LineString ls : mls.getLines()) {
@@ -73,14 +72,14 @@ public class GeometrySerializer extends JsonSerializer<Geometry> {
     }
     
     protected void serializeMultiPoint(MultiPoint mp, JsonGenerator json) throws IOException {
-        writeTypeField(MULTI_POINT, json);
+        writeTypeField(GeometryTypes.MULTI_POINT, json);
         writeStartCoordinates(json);
         writePoints(json, mp.getPoints());
         writeEndCoordinates(json);
     }
     
     protected void serializeMultiPolygon(MultiPolygon mp, JsonGenerator json) throws IOException {
-        writeTypeField(MULTI_POLYGON, json);
+        writeTypeField(GeometryTypes.MULTI_POLYGON, json);
         writeStartCoordinates(json);
 
         for (Polygon polygon : mp.getPolygons()) {
@@ -99,14 +98,14 @@ public class GeometrySerializer extends JsonSerializer<Geometry> {
     }
     
     protected void serializeLineString(LineString ls, JsonGenerator json) throws IOException {
-        writeTypeField(LINE_STRING, json);
+        writeTypeField(GeometryTypes.LINE_STRING, json);
         writeStartCoordinates(json);
         writePoints(json, ls.getPoints());
         writeEndCoordinates(json);
     }
     
     protected void serializePolygon(Polygon polygon, JsonGenerator json) throws IOException {
-        writeTypeField(POLYGON, json);
+        writeTypeField(GeometryTypes.POLYGON, json);
         writeStartCoordinates(json);
 
         for (int i=0; i<polygon.numRings(); i++) {
@@ -119,7 +118,7 @@ public class GeometrySerializer extends JsonSerializer<Geometry> {
     }
     
     protected void serializePoint(Point point, JsonGenerator json) throws IOException {
-        writeTypeField(POINT, json);
+        writeTypeField(GeometryTypes.POINT, json);
         writeStartCoordinates(json);
         writeNumbers(json, point.getX(), point.getY(), point.getZ());
         writeEndCoordinates(json);
