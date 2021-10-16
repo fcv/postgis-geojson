@@ -1,7 +1,7 @@
 package org.postgis.geojson;
 
-import org.postgis.*;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import net.postgis.jdbc.geometry.Geometry;
 import org.postgis.geojson.deserializers.GeometryDeserializer;
 import org.postgis.geojson.serializers.GeometrySerializer;
 

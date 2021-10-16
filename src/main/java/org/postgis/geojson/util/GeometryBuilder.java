@@ -1,9 +1,11 @@
 package org.postgis.geojson.util;
 
+import net.postgis.jdbc.geometry.LinearRing;
+import net.postgis.jdbc.geometry.Point;
+import net.postgis.jdbc.geometry.Polygon;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import org.postgis.*;
 
 public class GeometryBuilder {
     public static final int DEFAULT_SRID = 4326;

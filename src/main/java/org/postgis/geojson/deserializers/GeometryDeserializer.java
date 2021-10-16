@@ -6,21 +6,28 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
+import net.postgis.jdbc.geometry.Geometry;
+import net.postgis.jdbc.geometry.GeometryCollection;
+import net.postgis.jdbc.geometry.LineString;
+import net.postgis.jdbc.geometry.LinearRing;
+import net.postgis.jdbc.geometry.MultiLineString;
+import net.postgis.jdbc.geometry.MultiPoint;
+import net.postgis.jdbc.geometry.MultiPolygon;
+import net.postgis.jdbc.geometry.Point;
+import net.postgis.jdbc.geometry.Polygon;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import org.postgis.Geometry;
-import org.postgis.GeometryCollection;
-import org.postgis.LineString;
-import org.postgis.LinearRing;
-import org.postgis.MultiLineString;
-import org.postgis.MultiPoint;
-import org.postgis.MultiPolygon;
-import org.postgis.Point;
-import org.postgis.Polygon;
-import static org.postgis.geojson.GeometryTypes.*;
+
+import static org.postgis.geojson.GeometryTypes.LINE_STRING;
+import static org.postgis.geojson.GeometryTypes.MULTI_LINE_STRING;
+import static org.postgis.geojson.GeometryTypes.MULTI_POINT;
+import static org.postgis.geojson.GeometryTypes.MULTI_POLYGON;
+import static org.postgis.geojson.GeometryTypes.POINT;
+import static org.postgis.geojson.GeometryTypes.POLYGON;
 
 /**
  * Deserializer for Geometry types.

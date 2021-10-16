@@ -2,18 +2,18 @@ package org.postgis.geojson.serializers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import net.postgis.jdbc.geometry.Geometry;
+import net.postgis.jdbc.geometry.GeometryCollection;
+import net.postgis.jdbc.geometry.LineString;
+import net.postgis.jdbc.geometry.LinearRing;
+import net.postgis.jdbc.geometry.MultiLineString;
+import net.postgis.jdbc.geometry.MultiPoint;
+import net.postgis.jdbc.geometry.MultiPolygon;
+import net.postgis.jdbc.geometry.Point;
+import net.postgis.jdbc.geometry.Polygon;
+import org.postgis.geojson.util.GeometryBuilder;
 import org.junit.Before;
 import org.junit.Test;
-import org.postgis.Geometry;
-import org.postgis.GeometryCollection;
-import org.postgis.LineString;
-import org.postgis.LinearRing;
-import org.postgis.MultiLineString;
-import org.postgis.MultiPoint;
-import org.postgis.MultiPolygon;
-import org.postgis.Point;
-import org.postgis.Polygon;
-import org.postgis.geojson.util.GeometryBuilder;
 import org.skyscreamer.jsonassert.JSONAssert;
 
 /**
