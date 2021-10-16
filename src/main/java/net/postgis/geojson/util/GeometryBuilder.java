@@ -1,4 +1,4 @@
-package org.postgis.geojson.util;
+package net.postgis.geojson.util;
 
 import net.postgis.jdbc.geometry.LinearRing;
 import net.postgis.jdbc.geometry.Point;

@@ -1,4 +1,4 @@
-package org.postgis.geojson.serializers;
+package net.postgis.geojson.serializers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
@@ -11,7 +11,7 @@ import net.postgis.jdbc.geometry.MultiPoint;
 import net.postgis.jdbc.geometry.MultiPolygon;
 import net.postgis.jdbc.geometry.Point;
 import net.postgis.jdbc.geometry.Polygon;
-import org.postgis.geojson.util.GeometryBuilder;
+import net.postgis.geojson.util.GeometryBuilder;
 import org.junit.Before;
 import org.junit.Test;
 import org.skyscreamer.jsonassert.JSONAssert;

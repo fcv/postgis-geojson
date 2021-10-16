@@ -1,4 +1,4 @@
-package org.postgis.geojson.deserializers;
+package net.postgis.geojson.deserializers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
