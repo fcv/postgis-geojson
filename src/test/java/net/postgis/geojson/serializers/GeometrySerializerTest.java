@@ -32,14 +32,26 @@ public class GeometrySerializerTest {
     }
     
     @Test
-    public void testSerializePoint() throws Exception {
+    public void testSerialize2DPoint() throws Exception {
         System.out.println("serializePoint");
 
         Point obj = new Point(125.6, 10.1);
         
         String actual = mapper.writeValueAsString(obj);
         
-        String expected = "{\"type\": \"Point\",\"coordinates\": [125.6, 10.1, 0.0]}";
+        String expected = "{\"type\": \"Point\",\"coordinates\": [125.6, 10.1]}";
+        JSONAssert.assertEquals(expected, actual, false);
+    }
+
+    @Test
+    public void testSerialize3DPoint() throws Exception {
+        System.out.println("serializePoint");
+
+        Point obj = new Point(125.6, 10.1, 2.4);
+
+        String actual = mapper.writeValueAsString(obj);
+
+        String expected = "{\"type\": \"Point\",\"coordinates\": [125.6, 10.1, 2.4]}";
         JSONAssert.assertEquals(expected, actual, false);
     }
     

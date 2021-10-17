@@ -32,7 +32,7 @@ public class GeometryDeserializerTest {
     }
     
     @Test
-    public void testDeserializePoint() throws Exception {
+    public void testDeserialize2DPoint() throws Exception {
         System.out.println("deserializePoint");
         
         String json = "{\"type\": \"Point\",\"coordinates\": [125.6, 10.1]}";
@@ -43,6 +43,22 @@ public class GeometryDeserializerTest {
         assertEquals(125.6, p.getX(), 0);
         assertEquals(10.1, p.getY(), 0);
         assertEquals(0.0, p.getZ(), 0);
+        assertEquals(2, p.dimension);
+    }
+
+    @Test
+    public void testDeserialize3DPoint() throws Exception {
+        System.out.println("deserializePoint");
+
+        String json = "{\"type\": \"Point\",\"coordinates\": [125.6, 10.1, 2.4]}";
+
+        Point p = (Point) mapper.readValue(json, Geometry.class);
+
+        assertNotNull(p);
+        assertEquals(125.6, p.getX(), 0);
+        assertEquals(10.1, p.getY(), 0);
+        assertEquals(2.4, p.getZ(), 0);
+        assertEquals(3, p.dimension);
     }
     
     @Test
