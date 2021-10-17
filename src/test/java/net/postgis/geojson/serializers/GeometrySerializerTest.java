@@ -33,8 +33,6 @@ public class GeometrySerializerTest {
     
     @Test
     public void testSerialize2DPoint() throws Exception {
-        System.out.println("serializePoint");
-
         Point obj = new Point(125.6, 10.1);
         
         String actual = mapper.writeValueAsString(obj);
@@ -45,8 +43,6 @@ public class GeometrySerializerTest {
 
     @Test
     public void testSerialize3DPoint() throws Exception {
-        System.out.println("serializePoint");
-
         Point obj = new Point(125.6, 10.1, 2.4);
 
         String actual = mapper.writeValueAsString(obj);
@@ -57,8 +53,6 @@ public class GeometrySerializerTest {
     
     @Test
     public void testSerializeLineString() throws Exception {
-        System.out.println("serializeLineString");
-        
         String expected = "{\"type\": \"LineString\",\"coordinates\": [ [100.0, 0.0, 0.0], [101.0, 1.0, 0.0] ]}";
         
         LineString obj = new LineString(new Point[] {
@@ -71,8 +65,6 @@ public class GeometrySerializerTest {
     
     @Test
     public void testSerializePolygon() throws Exception {
-        System.out.println("serializePolygon");
-
         String expected = "{\"type\":\"Polygon\",\"coordinates\":"
                 + "[[[100.0,0.0,0.0],[101.0,0.0,0.0],[101.0,1.0,0.0],"
                 + "[100.0,1.0,0.0],[100.0,0.0,0.0]]]}";
@@ -88,8 +80,6 @@ public class GeometrySerializerTest {
     
     @Test
     public void testSerializeMultiLineString() throws Exception {
-        System.out.println("serializeMultiLineString");
-
         String expected = "{\"type\": \"MultiLineString\",\"coordinates\": "
                 + "[[[100.0, 0.0, 0.0], [101.0, 0.0, 0.0], [101.0, 1.0, 0.0], [100.0, 1.0, 0.0], [100.0, 0.0, 0.0]]]}";
         
@@ -105,8 +95,6 @@ public class GeometrySerializerTest {
     
     @Test
     public void testSerializeMultiPoint() throws Exception {
-        System.out.println("serializeMultiPoint");
-        
         String expected = "{\"type\": \"MultiPoint\",\"coordinates\": [ [100.0, 0.0, 0.0], [101.0, 1.0, 0.0] ]}";
         
         MultiPoint obj = new MultiPoint(new Point[] {
@@ -119,8 +107,6 @@ public class GeometrySerializerTest {
     
     @Test
     public void testSerializeMultiPolygon2DPoints() throws Exception {
-        System.out.println("serializeMultiPolygon");
-
         String expected = "{\"type\": \"MultiPolygon\",\"coordinates\": "
                 + "[[[[102.0, 2.0], [103.0, 2.0], [103.0, 3.0], [102.0, 3.0], [102.0, 2.0]]],"
                 + "[[[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]],"
@@ -153,8 +139,6 @@ public class GeometrySerializerTest {
 
     @Test
     public void testSerializeMultiPolygon3DPoints() throws Exception {
-        System.out.println("serializeMultiPolygon");
-
         String expected = "{\"type\": \"MultiPolygon\",\"coordinates\": "
                 + "[[[[102.0, 2.0, 2.1], [103.0, 2.0, 2.1], [103.0, 3.0, 3.1], [102.0, 3.0, 3.1], [102.0, 2.0, 2.1]]],"
                 + "[[[100.0, 0.0, 0.1], [101.0, 0.0, 0.1], [101.0, 1.0, 1.1], [100.0, 1.0, 1.1], [100.0, 0.0, 0.1]],"
@@ -187,8 +171,6 @@ public class GeometrySerializerTest {
     
     @Test
     public void testSerializeGeometryCollection2DPoints() throws Exception {
-        System.out.println("serializeGeometryCollection");
-        
         String expected = "{\"type\": \"GeometryCollection\",\"geometries\": ["
                 + "{ \"type\": \"Point\", \"coordinates\": [100.0, 0.0]},"
                 + "{ \"type\": \"LineString\", \"coordinates\": [ [101.0, 0.0], [102.0, 1.0] ] }"
@@ -206,8 +188,6 @@ public class GeometrySerializerTest {
 
     @Test
     public void testSerializeGeometryCollection3DPoints() throws Exception {
-        System.out.println("serializeGeometryCollection");
-
         String expected = "{\"type\": \"GeometryCollection\",\"geometries\": ["
                 + "{ \"type\": \"Point\", \"coordinates\": [100.0, 1.0, 2.0]},"
                 + "{ \"type\": \"LineString\", \"coordinates\": [ [101.0, 0.0, 0.1], [102.0, 1.0, 1.1] ] }"

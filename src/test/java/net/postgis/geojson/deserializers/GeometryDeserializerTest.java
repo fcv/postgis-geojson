@@ -33,8 +33,6 @@ public class GeometryDeserializerTest {
     
     @Test
     public void testDeserialize2DPoint() throws Exception {
-        System.out.println("deserializePoint");
-        
         String json = "{\"type\": \"Point\",\"coordinates\": [125.6, 10.1]}";
         
         Point p = (Point) mapper.readValue(json, Geometry.class);
@@ -48,8 +46,6 @@ public class GeometryDeserializerTest {
 
     @Test
     public void testDeserialize3DPoint() throws Exception {
-        System.out.println("deserializePoint");
-
         String json = "{\"type\": \"Point\",\"coordinates\": [125.6, 10.1, 2.4]}";
 
         Point p = (Point) mapper.readValue(json, Geometry.class);
@@ -63,8 +59,6 @@ public class GeometryDeserializerTest {
     
     @Test
     public void testDeserializeLineString() throws Exception {
-        System.out.println("deserializeLineString");
-        
         String json = "{\"type\": \"LineString\",\"coordinates\": [ [100.0, 0.0], [101.0, 1.0] ]}";
         
         LineString p = (LineString) mapper.readValue(json, Geometry.class);
@@ -79,8 +73,6 @@ public class GeometryDeserializerTest {
     
     @Test
     public void testDeserializePolygon() throws Exception {
-        System.out.println("deserializePolygon");
-
         String json = "{\"type\": \"Polygon\",\"coordinates\": "
                 + "[[[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]]]}";
         
@@ -108,8 +100,6 @@ public class GeometryDeserializerTest {
     
     @Test
     public void testDeserializeMultiLineString() throws Exception {
-        System.out.println("deserializeMultiLineString");
-
         String json = "{\"type\": \"MultiLineString\",\"coordinates\": "
                 + "[[[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]]]}";
         
@@ -137,8 +127,6 @@ public class GeometryDeserializerTest {
     
     @Test
     public void testDeserializeMultiPoint() throws Exception {
-        System.out.println("deserializeMultiPoint");
-        
         String json = "{\"type\": \"MultiPoint\",\"coordinates\": [ [100.0, 0.0], [101.0, 1.0] ]}";
         
         MultiPoint p = (MultiPoint) mapper.readValue(json, Geometry.class);
@@ -153,8 +141,6 @@ public class GeometryDeserializerTest {
     
     @Test
     public void testDeserializeMultiPolygon() throws Exception {
-        System.out.println("deserializeMultiPolygon");
-
         String json = "{\"type\": \"MultiPolygon\",\"coordinates\": "
                 + "[[[[102.0, 2.0], [103.0, 2.0], [103.0, 3.0], [102.0, 3.0], [102.0, 2.0]]]," 
                 + "[[[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]],"
@@ -187,8 +173,6 @@ public class GeometryDeserializerTest {
     
     @Test
     public void testDeserializegGeometryCollection() throws Exception {
-        System.out.println("deserializeGeometryCollection");
-        
         String json = "{\"type\": \"GeometryCollection\",\"geometries\": ["
                 + "{ \"type\": \"Point\", \"coordinates\": [100.0, 0.0]},"
                 + "{ \"type\": \"LineString\", \"coordinates\": [ [101.0, 0.0], [102.0, 1.0] ] }"
