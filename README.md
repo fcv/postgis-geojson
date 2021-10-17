@@ -37,7 +37,7 @@ Then add the dependency to your `pom.xml` file:
 <dependency>
   <groupId>com.github.fcv</groupId>
   <artifactId>postgis-geojson</artifactId>
-  <version>2.0</version>
+  <version>3.1</version>
 </dependency>
 ```
 
