@@ -1,5 +1,5 @@
 # postgis-geojson
-[![Build Status](https://travis-ci.org/mayconbordin/postgis-geojson.svg?branch=master)](https://travis-ci.org/mayconbordin/postgis-geojson) [![Release](https://jitpack.io/v/fcv/postgis-geojson.svg)](https://jitpack.io/#fcv/postgis-geojson)
+[![Build Status](https://github.com/fcv/postgis-geojson/actions/workflows/maven.yml/badge.svg)](https://github.com/fcv/postgis-geojson/actions/workflows/maven.yml) [![Release](https://jitpack.io/v/fcv/postgis-geojson.svg)](https://jitpack.io/#fcv/postgis-geojson)
 
 GeoJSON Jackson Serializers and Deserializers for PostGIS Geometry objects.
 
