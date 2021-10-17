@@ -199,11 +199,15 @@ public class GeometryDeserializer extends JsonDeserializer<Geometry> {
         
         List<Double> values = new ArrayList<>();
         Iterator<JsonNode> it = node.iterator();
-        
+
         while (it.hasNext()) {
             values.add(it.next().asDouble());
         }
-        
-        return new Point(values.get(0), values.get(1), values.size() > 2 ? values.get(2) : 0.0);
+
+        if (values.size() > 2) {
+            return new Point(values.get(0), values.get(1), values.get(2));
+        } else {
+            return new Point(values.get(0), values.get(1));
+        }
     }
 }

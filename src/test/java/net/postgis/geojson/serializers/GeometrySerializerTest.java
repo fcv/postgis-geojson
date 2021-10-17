@@ -62,7 +62,7 @@ public class GeometrySerializerTest {
         String expected = "{\"type\": \"LineString\",\"coordinates\": [ [100.0, 0.0, 0.0], [101.0, 1.0, 0.0] ]}";
         
         LineString obj = new LineString(new Point[] {
-            new Point(100.0, 0.0), new Point(101.0, 1.0)
+            new Point(100.0, 0.0, 0.0), new Point(101.0, 1.0, 0.0)
         });
         
         String actual = mapper.writeValueAsString(obj);
@@ -78,8 +78,8 @@ public class GeometrySerializerTest {
                 + "[100.0,1.0,0.0],[100.0,0.0,0.0]]]}";
         
         Polygon obj = GeometryBuilder.createPolygon(new Point[] {
-            new Point(100.0, 0.0), new Point(101.0, 0.0), new Point(101.0, 1.0),
-            new Point(100.0, 1.0), new Point(100.0, 0.0)
+            new Point(100.0, 0.0, 0.0), new Point(101.0, 0.0, 0.0), new Point(101.0, 1.0, 0.0),
+            new Point(100.0, 1.0, 0.0), new Point(100.0, 0.0, 0.0)
         });
         
         String actual = mapper.writeValueAsString(obj);
@@ -95,8 +95,8 @@ public class GeometrySerializerTest {
         
         MultiLineString obj = new MultiLineString(new LineString[] {
             new LineString(new Point[] {
-            new Point(100.0, 0.0), new Point(101.0, 0.0), new Point(101.0, 1.0),
-            new Point(100.0, 1.0), new Point(100.0, 0.0)
+            new Point(100.0, 0.0, 0.0), new Point(101.0, 0.0, 0.0), new Point(101.0, 1.0, 0.0),
+            new Point(100.0, 1.0, 0.0), new Point(100.0, 0.0, 0.0)
         })});
         
         String actual = mapper.writeValueAsString(obj);
@@ -110,7 +110,7 @@ public class GeometrySerializerTest {
         String expected = "{\"type\": \"MultiPoint\",\"coordinates\": [ [100.0, 0.0, 0.0], [101.0, 1.0, 0.0] ]}";
         
         MultiPoint obj = new MultiPoint(new Point[] {
-            new Point(100.0, 0.0), new Point(101.0, 1.0)
+            new Point(100.0, 0.0, 0.0), new Point(101.0, 1.0, 0.0)
         });
         
         String actual = mapper.writeValueAsString(obj);
@@ -118,13 +118,13 @@ public class GeometrySerializerTest {
     }
     
     @Test
-    public void testSerializeMultiPolygon() throws Exception {
+    public void testSerializeMultiPolygon2DPoints() throws Exception {
         System.out.println("serializeMultiPolygon");
 
         String expected = "{\"type\": \"MultiPolygon\",\"coordinates\": "
-                + "[[[[102.0, 2.0, 0.0], [103.0, 2.0, 0.0], [103.0, 3.0, 0.0], [102.0, 3.0, 0.0], [102.0, 2.0, 0.0]]]," 
-                + "[[[100.0, 0.0, 0.0], [101.0, 0.0, 0.0], [101.0, 1.0, 0.0], [100.0, 1.0, 0.0], [100.0, 0.0, 0.0]],"
-                + "[[100.2, 0.2, 0.0], [100.8, 0.2, 0.0], [100.8, 0.8, 0.0], [100.2, 0.8, 0.0], [100.2, 0.2, 0.0]]]"
+                + "[[[[102.0, 2.0], [103.0, 2.0], [103.0, 3.0], [102.0, 3.0], [102.0, 2.0]]],"
+                + "[[[100.0, 0.0], [101.0, 0.0], [101.0, 1.0], [100.0, 1.0], [100.0, 0.0]],"
+                + "[[100.2, 0.2], [100.8, 0.2], [100.8, 0.8], [100.2, 0.8], [100.2, 0.2]]]"
                 + "]}";
         
         MultiPolygon obj = new MultiPolygon(new Polygon[] {
@@ -150,14 +150,48 @@ public class GeometrySerializerTest {
         String actual = mapper.writeValueAsString(obj);
         JSONAssert.assertEquals(expected, actual, false);
     }
+
+    @Test
+    public void testSerializeMultiPolygon3DPoints() throws Exception {
+        System.out.println("serializeMultiPolygon");
+
+        String expected = "{\"type\": \"MultiPolygon\",\"coordinates\": "
+                + "[[[[102.0, 2.0, 2.1], [103.0, 2.0, 2.1], [103.0, 3.0, 3.1], [102.0, 3.0, 3.1], [102.0, 2.0, 2.1]]],"
+                + "[[[100.0, 0.0, 0.1], [101.0, 0.0, 0.1], [101.0, 1.0, 1.1], [100.0, 1.0, 1.1], [100.0, 0.0, 0.1]],"
+                + "[[100.2, 0.2, 0.3], [100.8, 0.2, 0.3], [100.8, 0.8, 0.9], [100.2, 0.8, 0.9], [100.2, 0.2, 0.3]]]"
+                + "]}";
+
+        MultiPolygon obj = new MultiPolygon(new Polygon[] {
+            new Polygon(new LinearRing[] {
+                new LinearRing(new Point[] {
+                    new Point(102.0, 2.0, 2.1), new Point(103.0, 2.0, 2.1), new Point(103.0, 3.0, 3.1),
+                    new Point(102.0, 3.0, 3.1), new Point(102.0, 2.0, 2.1)
+                })
+            }),
+
+            new Polygon(new LinearRing[] {
+                new LinearRing(new Point[] {
+                    new Point(100.0, 0.0, 0.1), new Point(101.0, 0.0, 0.1), new Point(101.0, 1.0, 1.1),
+                    new Point(100.0, 1.0, 1.1), new Point(100.0, 0.0, 0.1)
+                }),
+                new LinearRing(new Point[] {
+                    new Point(100.2, 0.2, 0.3), new Point(100.8, 0.2, 0.3), new Point(100.8, 0.8, 0.9),
+                    new Point(100.2, 0.8, 0.9), new Point(100.2, 0.2, 0.3)
+                })
+            }),
+        });
+
+        String actual = mapper.writeValueAsString(obj);
+        JSONAssert.assertEquals(expected, actual, false);
+    }
     
     @Test
-    public void testSerializegGeometryCollection() throws Exception {
+    public void testSerializeGeometryCollection2DPoints() throws Exception {
         System.out.println("serializeGeometryCollection");
         
         String expected = "{\"type\": \"GeometryCollection\",\"geometries\": ["
-                + "{ \"type\": \"Point\", \"coordinates\": [100.0, 0.0, 0.0]},"
-                + "{ \"type\": \"LineString\", \"coordinates\": [ [101.0, 0.0, 0.0], [102.0, 1.0, 0.0] ] }"
+                + "{ \"type\": \"Point\", \"coordinates\": [100.0, 0.0]},"
+                + "{ \"type\": \"LineString\", \"coordinates\": [ [101.0, 0.0], [102.0, 1.0] ] }"
                 + "]}";
         
         GeometryCollection obj = new GeometryCollection(new Geometry[]{
@@ -166,6 +200,25 @@ public class GeometrySerializerTest {
             })
         });
         
+        String actual = mapper.writeValueAsString(obj);
+        JSONAssert.assertEquals(expected, actual, false);
+    }
+
+    @Test
+    public void testSerializeGeometryCollection3DPoints() throws Exception {
+        System.out.println("serializeGeometryCollection");
+
+        String expected = "{\"type\": \"GeometryCollection\",\"geometries\": ["
+                + "{ \"type\": \"Point\", \"coordinates\": [100.0, 1.0, 2.0]},"
+                + "{ \"type\": \"LineString\", \"coordinates\": [ [101.0, 0.0, 0.1], [102.0, 1.0, 1.1] ] }"
+                + "]}";
+
+        GeometryCollection obj = new GeometryCollection(new Geometry[]{
+            new Point(100.0, 1.0, 2.0), new LineString(new Point[] {
+                new Point(101.0, 0.0, 0.1), new Point(102.0, 1.0, 1.1)
+            })
+        });
+
         String actual = mapper.writeValueAsString(obj);
         JSONAssert.assertEquals(expected, actual, false);
     }
