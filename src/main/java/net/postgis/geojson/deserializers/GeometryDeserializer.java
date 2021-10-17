@@ -57,7 +57,7 @@ public class GeometryDeserializer extends JsonDeserializer<Geometry> {
         }
     }
     
-    protected Geometry coordinatesToGeometry(String type, JsonNode coordinates, JsonParser jp)
+    static protected Geometry coordinatesToGeometry(String type, JsonNode coordinates, JsonParser jp)
             throws JsonParseException {
         switch (type) {
             case GeometryTypes.POINT:
@@ -77,8 +77,8 @@ public class GeometryDeserializer extends JsonDeserializer<Geometry> {
                         jp.getCurrentLocation());
         }
     }
-    
-    protected Geometry[] readNodeAsGeometryArray(JsonNode node, JsonParser jp) throws JsonParseException {
+
+    static protected Geometry[] readNodeAsGeometryArray(JsonNode node, JsonParser jp) throws JsonParseException {
         if (!node.isArray()) {
             return null;
         }
@@ -109,8 +109,8 @@ public class GeometryDeserializer extends JsonDeserializer<Geometry> {
 
         return values.toArray(new Geometry[values.size()]);
     }
-    
-    protected LineString[] readNodeAsLineStringArray(JsonNode node) {
+
+    static protected LineString[] readNodeAsLineStringArray(JsonNode node) {
         if (!node.isArray()) {
             return null;
         }
@@ -127,13 +127,13 @@ public class GeometryDeserializer extends JsonDeserializer<Geometry> {
 
         return values.toArray(new LineString[values.size()]);
     }
-    
-    protected LineString readNodeAsLineString(JsonNode node) {
+
+    static protected LineString readNodeAsLineString(JsonNode node) {
         Point[] points = readNodeAsPointArray(node);
         return new LineString(points);
     }
-    
-    protected Polygon[] readNodeAsPolygonArray(JsonNode node) {
+
+    static protected Polygon[] readNodeAsPolygonArray(JsonNode node) {
         if (!node.isArray()) {
             return null;
         }
@@ -150,8 +150,8 @@ public class GeometryDeserializer extends JsonDeserializer<Geometry> {
 
         return values.toArray(new Polygon[values.size()]);
     }
-    
-    protected LinearRing[] readNodeAsLinearRingArray(JsonNode node) {
+
+    static protected LinearRing[] readNodeAsLinearRingArray(JsonNode node) {
         if (!node.isArray()) {
             return null;
         }
@@ -168,13 +168,13 @@ public class GeometryDeserializer extends JsonDeserializer<Geometry> {
 
         return values.toArray(new LinearRing[values.size()]);
     }
-    
-    protected LinearRing readNodeAsLinearRing(JsonNode node) {
+
+    static protected LinearRing readNodeAsLinearRing(JsonNode node) {
         Point[] points = readNodeAsPointArray(node);
         return new LinearRing(points);
     }
-    
-    protected Point[] readNodeAsPointArray(JsonNode node) {
+
+    static protected Point[] readNodeAsPointArray(JsonNode node) {
         if (!node.isArray()) {
             return null;
         }
@@ -192,14 +192,14 @@ public class GeometryDeserializer extends JsonDeserializer<Geometry> {
         return values.toArray(new Point[values.size()]);
     }
 
-    protected Point readNodeAsPoint(JsonNode node) {
+    static protected Point readNodeAsPoint(JsonNode node) {
         if (!node.isArray()) {
             return null;
         }
         
         List<Double> values = new ArrayList<>();
         Iterator<JsonNode> it = node.iterator();
-
+        
         while (it.hasNext()) {
             values.add(it.next().asDouble());
         }
