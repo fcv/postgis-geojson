@@ -84,10 +84,8 @@ public class GeometryDeserializer extends JsonDeserializer<Geometry> {
         }
         
         List<Geometry> values = new ArrayList<>();
-        Iterator<JsonNode> it = node.iterator();
-        
-        while (it.hasNext()) {
-            JsonNode val = it.next();
+
+        for (JsonNode val : node) {
             if (val.isObject()) {
                 Iterator<Map.Entry<String, JsonNode>> fields = val.fields();
                 String type = null;
@@ -116,10 +114,8 @@ public class GeometryDeserializer extends JsonDeserializer<Geometry> {
         }
         
         List<LineString> values = new ArrayList<>();
-        Iterator<JsonNode> it = node.iterator();
-        
-        while (it.hasNext()) {
-            JsonNode val = it.next();
+
+        for (JsonNode val : node) {
             if (val.isArray()) {
                 values.add(readNodeAsLineString(val));
             }
@@ -139,10 +135,8 @@ public class GeometryDeserializer extends JsonDeserializer<Geometry> {
         }
         
         List<Polygon> values = new ArrayList<>();
-        Iterator<JsonNode> it = node.iterator();
-        
-        while (it.hasNext()) {
-            JsonNode val = it.next();
+
+        for (JsonNode val : node) {
             if (val.isArray()) {
                 values.add(new Polygon(readNodeAsLinearRingArray(val)));
             }
@@ -157,10 +151,8 @@ public class GeometryDeserializer extends JsonDeserializer<Geometry> {
         }
         
         List<LinearRing> values = new ArrayList<>();
-        Iterator<JsonNode> it = node.iterator();
-        
-        while (it.hasNext()) {
-            JsonNode val = it.next();
+
+        for (JsonNode val : node) {
             if (val.isArray()) {
                 values.add(readNodeAsLinearRing(val));
             }
@@ -180,10 +172,8 @@ public class GeometryDeserializer extends JsonDeserializer<Geometry> {
         }
         
         List<Point> values = new ArrayList<>();
-        Iterator<JsonNode> it = node.iterator();
-        
-        while (it.hasNext()) {
-            JsonNode val = it.next();
+
+        for (JsonNode val : node) {
             if (val.isArray()) {
                 values.add(readNodeAsPoint(val));
             }
@@ -198,10 +188,9 @@ public class GeometryDeserializer extends JsonDeserializer<Geometry> {
         }
         
         List<Double> values = new ArrayList<>();
-        Iterator<JsonNode> it = node.iterator();
-        
-        while (it.hasNext()) {
-            values.add(it.next().asDouble());
+
+        for (JsonNode jsonNode : node) {
+            values.add(jsonNode.asDouble());
         }
 
         if (values.size() > 2) {
