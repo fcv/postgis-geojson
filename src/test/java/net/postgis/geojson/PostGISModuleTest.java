@@ -70,7 +70,7 @@ public class PostGISModuleTest {
 
     @Test
     public void testDeserializeNestedLineString() throws Exception {
-        String json = "{\"lineString\": {\"point\": {\"type\": \"Point\",\"coordinates\": [125.6, 10.1, 2.4]}}}";
+        String json = "{\"lineString\": {\"type\": \"LineString\",\"coordinates\": [ [100.0, 0.0], [101.0, 1.0] ]}}";
 
         NestedLineString bean = mapper.readValue(json, NestedLineString.class);
 
@@ -241,10 +241,10 @@ public class PostGISModuleTest {
 
     @Test
     public void testDeserializeNestedGeometryCollection() throws Exception {
-        String json = "{\"geometryCollection\": \"type\": \"GeometryCollection\",\"geometries\": ["
+        String json = "{\"geometryCollection\": {\"type\": \"GeometryCollection\",\"geometries\": ["
                 + "{ \"type\": \"Point\", \"coordinates\": [100.0, 0.0]},"
                 + "{ \"type\": \"LineString\", \"coordinates\": [ [101.0, 0.0], [102.0, 1.0] ] }"
-                + "]}";
+                + "]}}";
         NestedGeometryCollection bean = mapper.readValue(json, NestedGeometryCollection.class);
 
         GeometryCollection gc = bean.geometryCollection;
